@@ -31,7 +31,7 @@ class RateCalculatorsController < ApplicationController
   end
 
   def calculate_scheduled_principal
-    (calculate_scheduled_payment - calculate_scheduled_interest(@principal_balance, @wac)).round
+    (calculate_scheduled_payment - calculate_scheduled_interest(@principal_balance, @wac)).round rescue 0
   end
 
   def ending_performing_balance
