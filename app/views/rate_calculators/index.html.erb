@@ -12,14 +12,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>#</td>
-      <td><%= @princinpal_balance %></td>
-      <td><%= @scheduled_payment %></td>
-      <td><%= @scheduled_interest %></td>
-      <td>#</td>
-      <td><%= @scheduled_principal %></td>
-      <td><%= @ending_perf_balance %></td>
-    </tr>
+    <% (1..(@duration)).each do |month|  %>
+      <tr>
+        <td><%= month %></td>
+        <td><%= @payments[month - 1].round %></td>
+        <td><%= @scheduled_payment.round %></td>
+        <td><%= @interests[month - 1].round %></td>
+        <td> - </td>
+        <td><%= @principals[month - 1].round %></td>
+        <td><%= @end_perf_balances[month - 1].round %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

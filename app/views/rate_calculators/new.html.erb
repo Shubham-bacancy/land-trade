@@ -1,17 +1,17 @@
 <div>
-  <h2>Enter values details here..</h2>
+  <h2>Enter values here..</h2>
 </div>
 <div> 
   <%= form_tag(rate_calculators_index_path, method: :get) do %>
     <div class="form-group row">
-      <label for="inputPassword" class="col-sm-2 col-form-label">Unpaid Principal Balance</label>
+      <label for="inputPassword" class="col-sm-2 col-form-label">Unpaid Principal Balance*</label>
       <div class="col-sm-10">
         <%= text_field_tag :principal_balance  %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputPassword" class="col-sm-2 col-form-label">WAC</label>
+      <label for="inputPassword" class="col-sm-2 col-form-label">WAC*</label>
       <div class="col-sm-10">
         <%= text_field_tag :wac %>
       </div>
@@ -25,7 +25,7 @@
     </div>
     
     <div class="form-group row">
-      <label for="inputPassword" class="col-sm-2 col-form-label">Duration</label>
+      <label for="inputPassword" class="col-sm-2 col-form-label">Duration*</label>
       <div class="col-sm-10">
         <%= text_field_tag :duration %>
       </div>

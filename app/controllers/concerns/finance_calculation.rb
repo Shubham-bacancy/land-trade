@@ -20,11 +20,7 @@ module FinanceCalculation
       type = options.fetch(:type, 0)
       ((@amount * interest(@monthly_rate, @duration) - future_value ) / ((1.0 + @monthly_rate * type) * fvifa(@monthly_rate, duration)))
     end
-
-    def apr
-      @apr ||= calculate_apr
-    end
-
+    
     protected
 
       def pow1pm1(x, y)
@@ -56,16 +52,6 @@ module FinanceCalculation
 
       def principal_calculation
         amount * (1 - currency_protection/100 - structure_fee / 100 ) - fee * duration
-      end
-
-      def calculate_apr
-        payment_ratio = pmt / principal_calculation
-        duration = @duration
-        f = lambda {|k| (k**(duration + 1) - (k**duration * (payment_ratio + 1)) + payment_ratio)}
-        f_deriv = lambda { |k| ((duration + 1) * k**duration) - (duration * (payment_ratio + 1) * k**(duration - 1))}
-
-        root = newton_raphson(f, f_deriv, monthly_rate + 1)
-        100 * 12 * (root -1).to_f
       end
 
       def newton_raphson(f, f_deriv, start, precision = 5)
