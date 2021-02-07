@@ -67,6 +67,10 @@ class RateCalculatorsController < ApplicationController
     ((100*(minus_amt)*(1-(prepay_assumption)**(monthly))+0.5)/100) rescue 0
   end
 
+  def calculate_cash_received(principal_received, interest_received)
+    (principal_received + interest_received) rescue 0
+  end
+
   def set_arrays_of_calculations
     @payments = []
     @interests = []
@@ -77,6 +81,7 @@ class RateCalculatorsController < ApplicationController
     @prepayments = []
     @defaults = []
     @principal_received = []
+    @cash_received = []
 
     for i in(0..@duration)
       if i==0
@@ -89,6 +94,7 @@ class RateCalculatorsController < ApplicationController
         @prepayments << calculate_prepayment(@principal_balance, @scheduled_principal) # prepayment
         @defaults << calculate_default(@principal_balance) #calculate default
         @principal_received << calculate_received_principal(@prepayments[0], @scheduled_principal) # principal received
+        @cash_received << calculate_cash_received(@principal_received[0], @received_interests[0])
       else
         @payments << @end_perf_balances[i-1]
         @interests << calculate_scheduled_interest(@payments[i], @wac)
@@ -99,6 +105,7 @@ class RateCalculatorsController < ApplicationController
         @received_interests << calculate_received_interest(@interests[i], @servicing_fees[i])
         @prepayments << calculate_prepayment(@payments[i], @principals[i])
         @principal_received << calculate_received_principal(@prepayments[i], @principals[i])
+        @cash_received << calculate_cash_received(@principal_received[i], @received_interests[i])
       end 
     end
   end

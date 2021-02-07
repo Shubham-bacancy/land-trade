@@ -32,7 +32,7 @@
         <td><%= @end_perf_balances[month - 1].round %></td>
         <td><%= @principal_received[month -1].round %></td>
         <td><%= @received_interests[month - 1].round %></td>
-        <td></td>
+        <td><%= @cash_received[month - 1].round %></td>
       </tr>
     <% end %>
   </tbody>
