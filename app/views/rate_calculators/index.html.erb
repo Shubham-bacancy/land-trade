@@ -12,6 +12,7 @@
       <th scope="col">Defaults</th>
       <th scope="col">Principal Received</th>
       <th scope="col">Ending Performing Balance</th>
+      <th scope="col">Principal Received</th>
       <th scope="col">Interest Received</th>
       <th scope="col">Cash Received</th>
     </tr>
@@ -25,10 +26,11 @@
         <td><%= @interests[month - 1].round %></td>
         <td><%= @servicing_fees[month - 1].round %></td>
         <td><%= @principals[month - 1].round %></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= @prepayments[month-1].round %></td>
+        <td><%= @defaults[month - 1].round %></td>
+        <td><%= @principal_received[month -1].round %></td>
         <td><%= @end_perf_balances[month - 1].round %></td>
+        <td><%= @principal_received[month -1].round %></td>
         <td><%= @received_interests[month - 1].round %></td>
         <td></td>
       </tr>
